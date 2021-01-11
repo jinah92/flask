@@ -1,7 +1,7 @@
 # 실행 시 서버가 가동될 파이썬 파일
 
 from flask import Flask, render_template, request
-import get_goole_search
+import google_search
 
 # Flask 객체 인스턴스 생성
 app = Flask(__name__)
@@ -9,13 +9,21 @@ app = Flask(__name__)
 
 @app.route('/', methods=('GET', 'POST'))  # 접속하는 url
 def index():
-    if request.method == 'POST':
-        print(request.form.get('user'))  # request body에서 user를 찾음
-        user = request.form.get('user')
-        data = {'level': 60, 'point': 360, 'exp': 45000}
-        return render_template('index.html', user=user, data=data)
-    elif request.method == 'GET':
-        return render_template('index.html', user="진아", data={'level': 60, 'point': 360, 'exp': 45000})
+    # 웹 페이지에서 name='xxx'인 요소의 value 가져오기
+    print(request.form.get('keyword1'))
+    print(request.form.get('keyword2'))
+    keyword1 = request.form.get('keyword1')
+    keyword2 = request.form.get('keyword2')
+
+    # 위 값이 있을때만 크롤링 검색결과 반환
+    if keyword1 is not None and keyword2 is not None:
+        data = {
+            keyword1: google_search.get_search_count(keyword1).get('number'),
+            keyword2: google_search.get_search_count(keyword2).get('number'),
+        }
+        return render_template('index.html', data=data)
+    else:
+        return render_template('index.html')
 
 
 if __name__ == '__main__':
