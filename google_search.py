@@ -12,7 +12,7 @@ def get_search_count(keyword):
     number = soup.select_one('#result-stats').text
     print(number)  # 검색결과
     number = number[number.find('약') + 2:number.rfind('개')]
-    number = int(number.replace(',' ''))
+    number = int(number.replace(",", ""))
 
     return {'keyword': keyword, 'number': number}
 
