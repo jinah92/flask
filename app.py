@@ -1,6 +1,7 @@
 # 실행 시 서버가 가동될 파이썬 파일
 
 from flask import Flask, render_template, request
+import get_goole_search
 
 # Flask 객체 인스턴스 생성
 app = Flask(__name__)
