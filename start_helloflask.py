@@ -21,13 +21,24 @@ def ymd(fmt):
     return trans
 
 
+@app.route('/tmpl2')
+def templ2():
+    a = (1, '만남1', '김건모', False, [])
+    b = (2, '만남2', '노사연', True, [a])
+    c = (3, '만남3', '익명', False, [a, b])
+    d = (4, '만남4', '익명', False, [a, b, c])
+
+    return render_template('index.html', lst2=[a, b, c, d])
+
 @app.route('/t')
 def t():
     tit = Markup('<strong>Title</strong>')
     mu = Markup('<h1>iii = <i>%s</i></h1>')
     h = mu % 'Italic'
     print('h = ', h)
-    return render_template('index.html', title=tit, mu=h)
+    
+    lst = [('만남1', '김건모'), ('만남2', '노사연'), ('만남1', '김건모'), ('만남2', '노사연')]
+    return render_template('index.html', title=tit, mu=h, lst=lst)
 
 
 @app.route('/wc')

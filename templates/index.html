@@ -9,12 +9,38 @@
 <pre>
         {{ "<strong>Strong</strong>" | safe}}
         {{ "<strong>Strong</strong>" | striptags}}
-        <hr />
+        <hr/>
         {% raw %}
             {% if True %}
             TTT
             {% endif %}
         {% endraw %}
 </pre>
+<ul>
+    {% for item in lst %}
+    <li>{{item[0]}}: {{item[1]}}</li>
+    {% endfor %}
+
+    {% for title, name in lst %}
+    <li class="{{loop.cycle('aaa', 'bbb')}}">{{title}} : {{name}} - {{loop.index0}}</li>
+    <!--    loop.index : 1, 2, 3...-->
+    <!--    loop.revindex : (역순) 3, 2, 1...-->
+    <!--    loop.index0 : 1, 2...-->
+    <!--    loop.first : 첫번째 값이면 true, 아니면 false-->
+    <!--    loop.last : 마지막 값이면 true, 아니면 false -->
+    {% endfor %}
+</ul>
+<hr/>
+<ul>
+    <!--    recursive: 함수로 정의 (=> 재사용) -->
+    {% for rank, title, name, hide, ref in lst2 recursive %}
+    <li>
+        {{title}} : {{name}}
+        {% if ref %}
+        <ul class="sub">{{ loop(ref) }}</ul>
+        {% endif %}
+    </li>
+    {% endfor %}
+</ul>
 </body>
 </html>
