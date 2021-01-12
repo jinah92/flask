@@ -1,4 +1,5 @@
-from flask import Flask, g, request, make_response, Response, session
+from flask import Flask, g, request, make_response, Response, session, render_template
+from flask import Markup
 from datetime import date, datetime, timedelta
 
 # g : 글로벌 변수
@@ -8,7 +9,7 @@ app = Flask(__name__)
 app.config.update(
     SECRET_KEY='abcde',
     SESSION_COOKIE_NAME='pyweb_flask_session',
-    PREMANENT_SESSION_LIFETIME=timedelta(minutes=30) # 30분간 세션 유지
+    PREMANENT_SESSION_LIFETIME=timedelta(minutes=30)  # 30분간 세션 유지
 )
 
 
@@ -18,6 +19,15 @@ def ymd(fmt):
         return datetime.strptime(date_str, fmt)
 
     return trans
+
+
+@app.route('/t')
+def t():
+    tit = Markup('<strong>Title</strong>')
+    mu = Markup('<h1>iii = <i>%s</i></h1>')
+    h = mu % 'Italic'
+    print('h = ', h)
+    return render_template('index.html', title=tit, mu=h)
 
 
 @app.route('/wc')
@@ -42,6 +52,7 @@ def delete():
     if session.get('Token'):
         del session['Token']
     return 'Session 삭제완료'
+
 
 @app.route('/dt')
 def dt():
