@@ -5,16 +5,23 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Melon Top 100</title>
+    <title>{% block document_title %}Melon Top 100{% endblock %}</title>
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css">
     <!-- Bootstrap core CSS -->
     <link href="{{ url_for('static', filename='css/bootstrap.min.css') }}" rel="stylesheet">
     <!-- Material Design Bootstrap -->
-    <link href="static/css/mdb.min.css" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/mdb.min.css') }}" rel="stylesheet">
     <!-- Your custom styles (optional) -->
-    <link href="static/css/style.css" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/style.css')}}" rel="stylesheet">
 </head>
+
+<!--매크로 선언-->
+{% macro test_macro(type) -%}
+<h3>
+    TEST MECRO : {{type}}
+</h3>
+{%- endmacro %}
 
 <body>
 
@@ -96,15 +103,15 @@
 </header>
 <!--Main Navigation-->
 
+{% block test %}
+{% endblock %}
+
+
 <!--Main layout-->
 <main class="mt-5 pt-5">
     <div class="container">
-
-        <!-- <hr class="my-5"> -->
-        {%block main%}
-        {%endblock%}
-        <!--Section: Magazine v.1-->
-
+        {% block main %}
+        {% endblock main %}
     </div>
 </main>
 <!--Main layout-->
@@ -234,11 +241,11 @@
 <!-- JQuery -->
 <script type="text/javascript" src="{{ url_for('static', filename='js/jquery-3.3.1.min.js') }}"></script>
 <!-- Bootstrap tooltips -->
-<script type="text/javascript" src="js/popper.min.js"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/popper.min.js') }}"></script>
 <!-- Bootstrap core JavaScript -->
-<script type="text/javascript" src="js/bootstrap.min.js"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
 <!-- MDB core JavaScript -->
-<script type="text/javascript" src="js/mdb.min.js"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/mdb.min.js') }}"></script>
 <!-- Initializations -->
 <script type="text/javascript">
     // Animations initialization
@@ -246,6 +253,8 @@
 
     // $(document).ready
     $('#basicExampleModal').modal('show');
+
+
 
 
 </script>

@@ -12,6 +12,10 @@ app.config.update(
     PREMANENT_SESSION_LIFETIME=timedelta(minutes=30)  # 30분간 세션 유지
 )
 
+@app.route('/')
+def idx():
+    return render_template('app.html')
+
 @app.route('/main')
 def main():
     return render_template('main.html', title="MAIN!!")
@@ -126,11 +130,6 @@ def res1():
 # @app.route("/gg")
 # def gg():
 #     return 'Hello world' + getattr(g, 'str', '111')
-
-
-@app.route("/")
-def helloWorld():
-    return "Hello Flask World!"
 
 
 if __name__ == '__main__':
