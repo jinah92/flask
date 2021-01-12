@@ -24,6 +24,10 @@ params = {
 }
 
 res = requests.get(url=url, params=params)
-print(res.status_code, type(res.text), res.url)
-print()
-print(res.text)
+# print(res.status_code, type(res.text), res.url)
+# print()
+# print(res.text)
+
+from pprint import pprint
+data = res.json()
+pprint(data['response']['body']['items']['item'])
