@@ -12,6 +12,10 @@ app.config.update(
     PREMANENT_SESSION_LIFETIME=timedelta(minutes=30)  # 30분간 세션 유지
 )
 
+@app.route('/main')
+def main():
+    return render_template('main.html', title="MAIN!!")
+
 
 # request 처리 용 함수
 def ymd(fmt):

@@ -1,0 +1,15 @@
+{% extends "layout.html" %}
+{% block title %}{{title}}{% endblock %}
+
+{% block section %}
+    <div>
+        {{super()}}
+        오버라이딩 된 내용입니다.</div>
+{% endblock %}
+
+{% block outer_block %}
+    <p>111111</p>{{super()}}
+    {% block inner_block %}
+        BBBB
+    {% endblock inner_block %}
+{% endblock outer_block %}
