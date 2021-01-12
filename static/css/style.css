@@ -1,20 +1,22 @@
-.box{
-    border:5px solid black;
-    width : 200px;
-    height: 100px;
-    display: inline-block;
-    box-sizing: border-box;
-    margin : 0;
-    color : white;
-    font-weight: 900;
-    text-align: center;
-    line-height: 90px;
+body {
+  margin-top: 75px;
 }
 
-.box1{
-    background-color: orange;
+.text-center {
+  text-align: center;
 }
 
-.box2{
-    background-color : blue;
+tr > :first-child {
+  color: red;
 }
+tr > :last-child {
+  color: blue;
+}
+
+.card-comments img {
+  width: 4rem; }
+
+.aaa { font-weight: 700; }
+.bbb { color: red; }
+.sub { color: blue; }
+.font-sm { font-size: 0.9rem }
