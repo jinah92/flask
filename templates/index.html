@@ -42,5 +42,17 @@
     </li>
     {% endfor %}
 </ul>
+
+<hr>
+<ul>
+    {% for nav in navs recursive %}
+    <li>
+        <a href="">{{nav.title}} - {{loop.depth}}</a>
+        {% if nav.children %}
+        <ul class="sub">{{ loop(nav.children) }}</ul>
+        {% endif %}
+    </li>
+    {% endfor %}
+</ul>
 </body>
 </html>

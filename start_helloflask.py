@@ -20,6 +20,30 @@ def ymd(fmt):
 
     return trans
 
+class Nav:
+    def __init__(self, title, url="#", children=[]):
+        self.title = title
+        self.url = url
+        self.children = children
+
+@app.route('/tmpl3')
+def templ3():
+    py = Nav('파이썬', 'https://search.naver.com')
+    java = Nav('자바', 'https://search.naver.com')
+    prg = Nav('프로그래밍 언어', 'https://search.naver.com', [py, java])
+
+    jinja = Nav('jinja', 'https://search.naver.com')
+    gc = Nav('Genshi, Cheetah', 'https://search.naver.com')
+    flask = Nav('플라스크', 'https://search.naver.com', [jinja, gc])
+    spring = Nav('스프링', 'https://search.naver.com')
+    node = Nav('노드js', 'https://search.naver.com')
+    web = Nav('웹 프레임워크', 'https://search.naver.com', [flask, spring, node])
+
+    my = Nav('나의 일상', 'https://search.naver.com')
+    issue = Nav('이슈 게시판', 'https://search.naver.com')
+    others = Nav('기타', 'https://search.naver.com', [my, issue])
+
+    return render_template('index.html', navs=[prg, web, others])
 
 @app.route('/tmpl2')
 def templ2():
