@@ -30,4 +30,23 @@ res = requests.get(url=url, params=params)
 
 from pprint import pprint
 data = res.json()
-pprint(data['response']['body']['items']['item'])
+data = data['response']['body']['items']['item']
+
+# category 표
+categorys = {
+    'T1H':'기온',
+    'RN1':'1시간 강수량',
+    'UUU':'동서바람성분',
+    'VVV':'남북바람성분',
+    'REH':'습도',
+    'PTY':'강수형태',
+    'VEC':'풍향',
+    'WSD':'풍속',
+}
+
+# 최종 데이터 생성
+results = {}
+for d in data:
+    results[categorys[d['category']]] = d['obsrValue']
+
+pprint(results)
